@@ -4,12 +4,12 @@
         "name": "Kosmos Restaurant & Lounge",
         "address":{
             "street":"5011 50th Ave",
-            "city":"Leduc",
-            "state":"Alberta",
-            "country":"Canada",
+            "city":"Lagos",
+            "state":"Lasg",
+            "country":"NG",
             "zip":"T9E 6V9"
         },
-        "phone_number": "(780) 986-3122",
+        "phone_number": "0805 986-312",
         "email":"N/A",
         "url": "https://www.kosmosleduc.ca/",
         "image": "images/kosmos-icon.webp",
@@ -24,7 +24,7 @@
             "country": "Nigeria",
             "zip": "T9E 745"
         },
-        "phone_number": "(587) 424-2502",
+        "phone_number": "0803 424-252",
         "email": "sales@firesideit.ca",
         "url": "https://firesideit.ca/",
         "image": "images/fireside-icon.webp",
@@ -39,7 +39,7 @@
             "country": "NG",
             "zip": "T9E 3C3"
         },
-        "phone_number": "(780) 739-1550",
+        "phone_number": "(747) 739-1550",
         "email": "manager@artsfoundry.ca",
         "url": "https://www.artsfoundry.ca/",
         "image": "images/arts-foundry-icon.webp",
