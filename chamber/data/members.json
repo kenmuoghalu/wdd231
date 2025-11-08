@@ -1,0 +1,110 @@
+{
+    "businesses":[
+    {   
+        "name": "Kosmos Restaurant & Lounge",
+        "address":{
+            "street":"5011 50th Ave",
+            "city":"Leduc",
+            "state":"Alberta",
+            "country":"Canada",
+            "zip":"T9E 6V9"
+        },
+        "phone_number": "(780) 986-3122",
+        "email":"N/A",
+        "url": "https://www.kosmosleduc.ca/",
+        "image": "images/kosmos-icon.webp",
+        "membership_lvl": 3
+    },
+    {
+        "name": "Fireside IT Partners",
+        "address": {
+            "street": "6051b 47 St. Unit 206",
+            "city": "Leduc",
+            "state": "Alberta",
+            "country": "Canada",
+            "zip": "T9E 745"
+        },
+        "phone_number": "(587) 424-2502",
+        "email": "sales@firesideit.ca",
+        "url": "https://firesideit.ca/",
+        "image": "images/fireside-icon.webp",
+        "membership_lvl": 2
+    },
+    {
+        "name": "Leduc Arts Foundry",
+        "address": {
+            "street": "4330 Black Gold Drive, 103",
+            "city": "Leduc",
+            "state": "Alberta",
+            "country": "Canada",
+            "zip": "T9E 3C3"
+        },
+        "phone_number": "(780) 739-1550",
+        "email": "manager@artsfoundry.ca",
+        "url": "https://www.artsfoundry.ca/",
+        "image": "images/arts-foundry-icon.webp",
+        "membership_lvl": 1
+    },
+    {
+        "name": "Nguyen Scott LLP",
+        "address": {
+            "street": " 5220 50 Street",
+            "city": "Leduc",
+            "state": "Alberta",
+            "country": "Canada",
+            "zip": "T9E 6Z6"
+        },
+        "phone_number": "(780) 458-5479",
+        "email": "office@nsllp.ca",
+        "url": "https://nsllp.ca/",
+        "image": "images/nsllp-icon.webp",
+        "membership_lvl": 3
+    },
+    {
+        "name": "Hanson's Paint and Décor",
+        "address": {
+            "street": "5003 - 49 Street",
+            "city": "Wetaskiwin",
+            "state": "Alberta",
+            "country": "Canada",
+            "zip": "T9A 1H6"
+        },
+        "phone_number": "(780) 352-2244",
+        "email": "N/A",
+        "url": "https://www.hansonspaintanddecor.com/",
+        "image": "images/hansons-icon.webp",
+        "membership_lvl": 1
+    },
+    {
+        "name": "Leduc Physio",
+        "address": {
+            "street": "15-5201 50 St",
+            "city": "Leduc",
+            "state": "Alberta",
+            "country": "Canada",
+            "zip": "T9E 6T4"
+        },
+        "phone_number": "(780) 980-5443",
+        "email": "info@leducphysio.ca",
+        "url": "https://www.leducphysio.ca/",
+        "image": "images/leduc-physio-icon.webp",
+        "membership_lvl": 2
+
+    },
+    {
+        "name": "Zulu Hair Design",
+        "address": {
+            "street": "4724 51 Ave",
+            "city": "Leduc",
+            "state": "Alberta",
+            "country": "Canada",
+            "zip": "T9E 6Y8"
+        },
+        "phone_number": "(780) 980-2404",
+        "email": "zuluhair@shaw.ca",
+        "url": "https://www.zuluhair.com/",
+        "image": "images/zulu-icon.webp",
+        "membership_lvl": 1
+    }
+]
+}

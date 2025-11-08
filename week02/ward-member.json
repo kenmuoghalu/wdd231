@@ -1,0 +1,18 @@
+{
+    "family_name": "M",
+    "move_in_date": "2024-04-08",
+    "number_of_people": 2,
+    "visited_by_bishopric": true,
+    "family_members": [
+        {
+            "name": "G M",
+            "gender": "Male",
+            "birthdate": "2004-07-01"
+        },
+        {
+            "name": "Ken C",
+            "gender": "Male",
+            "birthdate": "2001-05-03"
+        }
+    ]
+}
