@@ -19,9 +19,9 @@
         "name": "Fireside IT Partners",
         "address": {
             "street": "6051b 47 St. Unit 206",
-            "city": "Leduc",
-            "state": "Alberta",
-            "country": "Canada",
+            "city": "Lasg",
+            "state": "agos",
+            "country": "Nigeria",
             "zip": "T9E 745"
         },
         "phone_number": "(587) 424-2502",
@@ -35,8 +35,8 @@
         "address": {
             "street": "4330 Black Gold Drive, 103",
             "city": "Leduc",
-            "state": "Alberta",
-            "country": "Canada",
+            "state": "Lagos",
+            "country": "NG",
             "zip": "T9E 3C3"
         },
         "phone_number": "(780) 739-1550",
@@ -46,12 +46,12 @@
         "membership_lvl": 1
     },
     {
-        "name": "Nguyen Scott LLP",
+        "name": "Ng Scott LLP",
         "address": {
             "street": " 5220 50 Street",
-            "city": "Leduc",
-            "state": "Alberta",
-            "country": "Canada",
+            "city": "Lagos",
+            "state": "Lagos",
+            "country": "NG",
             "zip": "T9E 6Z6"
         },
         "phone_number": "(780) 458-5479",
@@ -65,26 +65,26 @@
         "address": {
             "street": "5003 - 49 Street",
             "city": "Wetaskiwin",
-            "state": "Alberta",
-            "country": "Canada",
+            "state": "Lagos",
+            "country": "NG",
             "zip": "T9A 1H6"
         },
-        "phone_number": "(780) 352-2244",
+        "phone_number": "0805 352-224",
         "email": "N/A",
         "url": "https://www.hansonspaintanddecor.com/",
         "image": "images/hansons-icon.webp",
         "membership_lvl": 1
     },
     {
-        "name": "Leduc Physio",
+        "name": "Lasg Phyo",
         "address": {
             "street": "15-5201 50 St",
             "city": "Leduc",
-            "state": "Alberta",
-            "country": "Canada",
-            "zip": "T9E 6T4"
+            "state": "Lagos",
+            "country": "Nigeria",
+            "zip": "T9E 7Z4"
         },
-        "phone_number": "(780) 980-5443",
+        "phone_number": "0805 980-544",
         "email": "info@leducphysio.ca",
         "url": "https://www.leducphysio.ca/",
         "image": "images/leduc-physio-icon.webp",
@@ -96,8 +96,8 @@
         "address": {
             "street": "4724 51 Ave",
             "city": "Leduc",
-            "state": "Alberta",
-            "country": "Canada",
+            "state": "Lagos",
+            "country": "NG",
             "zip": "T9E 6Y8"
         },
         "phone_number": "(780) 980-2404",
