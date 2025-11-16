@@ -2,7 +2,7 @@
 const url = './data/members.json';
 
 // get the container for the business cards
-const businessCards = document.querySelector("#business-cards");
+const spotlightCards = document.querySelector("#spot-business-cards");
 
 //Get the buttons in the menu:
 const gridViewBtn = document.querySelector("#grid");
@@ -16,25 +16,30 @@ async function getBusinessData() {
     displayBusinessGrid(data.businesses);
 }
 
-//When GRID VIEW button is clicked:
-gridViewBtn.addEventListener('click', () => {
-    //Toggle class list to view ONLY the grid view
-    businessCards.classList.add("grid-view");
-    businessCards.classList.remove("list-view");
-});
-
-//When LIST VIEW button is clicked:
-listViewBtn.addEventListener('click', () => {
-    //Toggle class list to view ONLY the grid view
-    businessCards.classList.add("list-view");
-    businessCards.classList.remove("grid-view");
-});
-
-
 //Create content for Grid view
 const displayBusinessGrid = (businesses) => {
-    businesses.forEach(business => {
-        /************ FOR POPULATING GRID IN DIRECTORY PAGE ****************/
+    //Filter businesses to inclue Level 2 and 3 members only:
+    let memberBusinesses = businesses.filter(business => 
+        business.membership_lvl === 3 || business.membership_lvl === 2
+    );
+
+    //Shuffle the filtered list:
+    for (let i = memberBusinesses.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1)); // random number to change index with
+
+        //Swap items in the list:
+        let temp = memberBusinesses[i];
+        memberBusinesses[i] = memberBusinesses[j];
+        memberBusinesses[j] = temp;
+    }
+
+    //Store the top 3 businesses in the filtered list
+    const topThreeBusiness = memberBusinesses.slice(0, 3);
+
+    //Display just the first three businesses:
+    topThreeBusiness.forEach(business => {
+
+        /************ FOR POPULATING SPOTLIGHT CARDS IN LANDDING PAGE ****************/
         //Create elements to build for each card:
         let card = document.createElement('section');
         let icon = document.createElement('img');
@@ -43,8 +48,8 @@ const displayBusinessGrid = (businesses) => {
         //info container contents:
         let address = document.createElement('p');
         let phoneNumber = document.createElement('p');
-        let email = document.createElement('p');
         let website = document.createElement("a");
+        let membershipLvl = document.createElement('p');
 
         //Build icon (img) content:
         icon.setAttribute('src', business.image);
@@ -59,7 +64,16 @@ const displayBusinessGrid = (businesses) => {
         //Build the (p) tags with content: 
         address.textContent = `${business.address.street}, ${business.address.city}, ${business.address.country} ${business.address.zip}`;
         phoneNumber.textContent = `${business.phone_number}`;
-        email.textContent = `${business.email}`;
+
+        if (business.membership_lvl == 3) {
+            membershipLvl.textContent = `👑 Gold Member 👑`;
+        }
+        else if (business.membership_lvl == 2) {
+            membershipLvl.textContent = `⚔️ Silver Member ⚔️`;
+        }
+        else {
+            membershipLvl.textContent = `🏅 Member 🏅`;
+        }
 
         //Build website(a) content:
         website.href = `${business.url}`;
@@ -71,12 +85,12 @@ const displayBusinessGrid = (businesses) => {
         card.appendChild(businessName);
         card.appendChild(address);
         card.appendChild(phoneNumber);
-        card.appendChild(email);
         card.appendChild(website);
+        card.appendChild(membershipLvl);
 
 
         //Append the card(section) to businessCard(#div):
-        businessCards.appendChild(card);
+        spotlightCards.appendChild(card);
     });
 }
 

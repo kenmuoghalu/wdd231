@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Lasg Chamber of Commerce</title>
+    <meta name="description"
+        content="Home Page for Lasg Chamber of Commerce. Find out about the services that we provide for businesses.">
+    <meta name="author" content="Kenneth Muoghalu">
+
+    <!--Social Media Tags-->
+    <!--Facebook-->
+    <meta property="og:title" content="Lasg Chamber of Commerce">
+    <meta property="og:description"
+        content="Explore the services and membership benefits we provide for business locally in Leduc, Alberta.">
+    <meta property="og:image" content="https://kenmuoghalu.github.io/wdd231/chamber/images/social-media-photo.webp">
+    <meta property="og:url" content="https://kenmuoghalu.github.io/wdd231/chamber/directory.html">
+
+    <!--Favicon-->
+    <link rel="icon" href="./images/favicon.ico">
+
+    <!--Stylesheets-->
+    <link rel="stylesheet" href="styles/small.css">
+    <link rel="stylesheet" href="styles/large.css">
+
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <!--Scripts-->
+    <script src="scripts/date.js" defer></script>
+    <script src="scripts/navigation.js" defer></script>
+    <script src="scripts/spotlight-cards.js" defer></script>
+    <script src="scripts/weather-api.js" defer></script>
+
+</head>
+
+<body>
+    <header>
+        <img src="images/page-icon.svg" alt="Logo" width="512" height="512" loading="lazy">
+        <span>Lasg Chamber of Commerce</span>
+        <button id="ham-btn" class="hamburger" title="Menu"></button>
+    </header>
+    <nav id="nav-bar" class="navigation">
+        <ul>
+            <li class="current"><a href="index.html">Home</a></li>
+            <li><a href="directory.html">Directory</a></li>
+            <li><a href="#">Join</a></li>
+            <li><a href="#">Discover</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="hero">
+            <img src="images/hero.webp" alt="Employees Collaborating Photo" width="700" height="466">
+            <button title="Become A Member">Become a Member</button>
+        </div>
+        <h1>Home</h1>
+        <div class="info-cards">
+            <section>
+                <h2>Events</h2>
+            </section>
+            <section id="weather-api">
+                <h2>Current Weather</h2>
+                <figure><img id="weather-icon" src="#" alt="" loading="lazy"></figure>
+                <p>
+                    <span id="current-temp"></span><br>
+                    <span id="weather-desc"></span><br>
+                    High: <span id="high-temp"></span><br>
+                    Low: <span id="low-temp"></span><br>
+                    Humidity: <span id="humidity"></span><br>
+                    Sunrise: <span id="sunrise-time"></span><br>
+                    Sunset: <span id="sunset-time"></span><br>
+                </p>
+            </section>
+            <section id="weather-forecast">
+                <h2>Weather Forecast</h2>
+                <p id="three-day-weather">
+
+                </p>
+            </section>
+        </div>
+        <div id="spot-business-cards" class="grid-view">
+
+        </div>
+    </main>
+    <footer>
+        <div class="site-info">
+            <h3>Lasg Chamber of Commerce</h3>
+            <p>2567 50th Street</p>
+            <p>Lagos, Nigeria T9E</p>
+            <p>info@leduclcc.org</p>
+            <p>+234-123-45766</p>
+        </div>
+        <div class="social-media">
+            <a href="https://www.youtube.com/" target="_blank"><img src="images/youtube-icon.svg" alt="Youtube"
+                    width="512" height="512" loading="lazy"></a>
+            <a href="https://x.com/" target="_blank"><img src="images/twitter-icon.svg" alt="Twitter" width="512"
+                    height="512" loading="lazy"></a>
+            <a href="https://www.linkedin.com/" target="_blank"><img src="images/linkedin-icon.svg" alt="LinkedIn"
+                    width="512" height="512" loading="lazy"></a>
+        </div>
+        <div class="author-info">
+            <p>WDD231 Class Project
+            <p>Kenneth C Muoghalu</p>
+            <p><span id="currentyear"></span> Lasg Chamber of Commerce</p>
+            <p id="lastModified"></p>
+        </div>
+    </footer>
+</body>
+
+</html>

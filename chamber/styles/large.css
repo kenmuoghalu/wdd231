@@ -1,10 +1,10 @@
-@media only screen and (min-width: 38rem) {
+@media only screen and (min-width: 38em) {
 
     header,
     main,
     nav,
     footer {
-        max-width: 900px;
+        max-width: 1000px;
         margin: 0 auto;
     }
 
@@ -12,11 +12,11 @@
         grid-template-columns: 30px auto;
     }
 
-    main {
+    footer {
         display: grid;
-        grid-template-columns: 2fr auto 1fr;
+        grid-template-columns: 2fr auto 1.5fr;
         column-gap: 0.6em;
-        row-gap: 0.6em;
+        padding-left: 0;
     }
 
     .hamburger {
@@ -34,5 +34,24 @@
 
     .navigation a {
         border: none;
+    }
+
+    .list-view {
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+    }
+
+    .list-view section {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+    }
+
+    .info-cards {
+        display: grid;
+    }
+
+    #weather-api {
+        display: grid;
     }
 }
