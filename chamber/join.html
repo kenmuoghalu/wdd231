@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Join Lasg Chamber of Commerce</title>
+    <meta name="description"
+        content="Home Page for Lasg Chamber of Commerce. Find out about the services that we provide for businesses.">
+    <meta name="author" content="Kenneth Muoghalu">
+
+    <!--Social Media Tags-->
+    <!--Facebook-->
+    <meta property="og:title" content="Join Lasg Chamber of Commerce">
+    <meta property="og:description"
+        content="Join the membership to get the benefits and services we provide for businesses in Lasg, Nigeria.">
+    <meta property="og:image" content="https://shaniaesguerra.github.io/wdd231/chamber/images/hero.webp">
+    <meta property="og:url" content="https://shaniaesguerra.github.io/wdd231/chamber/directory.html">
+
+    <!--Favicon-->
+    <link rel="icon" href="./images/favicon.ico">
+
+    <!--Stylesheets-->
+    <link rel="stylesheet" href="styles/small.css">
+    <link rel="stylesheet" href="styles/large.css">
+
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+    <!--Scripts-->
+    <script src="scripts/date.js" defer></script>
+    <script src="scripts/navigation.js" defer></script>
+    <script src="scripts/membership-info-cards.js" type="module"></script>
+</head>
+
+<body>
+    <header>
+        <img src="images/page-icon.svg" alt="Logo" width="512" height="512" loading="lazy">
+        <span>Lasg Chamber of Commerce</span>
+        <button id="ham-btn" class="hamburger" title="Menu"></button>
+    </header>
+    <nav id="nav-bar" class="navigation">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="directory.html">Directory</a></li>
+            <li class="current"><a href="join.html">Join</a></li>
+            <li><a href="#">Discover</a></li>
+        </ul>
+    </nav>
+    <main id="joinPage">
+        <h1>Membership Application Form</h1>
+        <form method="get" action="thankyou.html" class="memberForm">
+            <fieldset>
+                <legend>Primary Contact Information</legend>
+                <label for="firstName">First Name</label>
+                <input id="firstName" name="firstName" title="First Name" type="text" autocomplete="given-name"
+                    autofocus required>
+
+                <label for="lastName">Last Name</label>
+                <input id="lastName" name="lastName" title="Last Name" type="text" autocomplete="family-name" required>
+
+                <label for="orgTitle">Organization Title</label>
+                <input id="orgTitle" name="orgTitle" title="Organization Title" type="text"
+                    autocomplete="organization-title" pattern="[a-zA-Z\\s-]{7,}">
+
+                <label for="email">Email</label>
+                <input id="email" name="email" title="Email" type="email" autocomplete="email"
+                    placeholder="youremail@email.com" required>
+
+                <label for="phone">Mobile Phone Number</label>
+                <input id="phone" name="phone" title="Mobile Phone Number" type="tel" autocomplete="tel"
+                    placeholder="567-777-6890" required pattern="[0-9]{10}">
+            </fieldset>
+
+            <fieldset>
+                <legend>Member Information</legend>
+                <label for="businessName">Business Name</label>
+                <input id="businessName" name="businessName" title="Business or Organization Name" type="text"
+                    autocomplete="organization" required>
+
+                <label for="businessDesc">Description of Business:</label>
+                <textarea name="businessDesc" id="businessDesc" title="Description of Business"
+                    placeholder="Tell us about your business by typing here!"></textarea>
+
+                <div id="radioMember">
+                    <h2>Type of Membership:</h2>
+
+                    <label for="npMember"><input id="npMember" name="membershipLevel" value="np" title="NP Membership" type="radio" required>
+                    ⭐ NP Membership</label>
+
+                    <label for="bronzeMember"><input id="bronzeMember" name="membershipLevel" value="bronze" title="Bronze Membership"
+                        type="radio" required>
+                    🏅 Bronze Membership</label>
+
+                    <label for="silverMember"><input id="silverMember" name="membershipLevel" value="silver" title="Silver Membership"
+                        type="radio" required>
+                    ⚔️ Silver Membership</label>
+
+                    <label for="goldMember"><input id="goldMember" name="membershipLevel" value="gold" title="Gold Membership" type="radio"
+                        required>
+                    👑 Gold Membership</label>
+                </div>
+
+                <!--Timestamp-->
+                <input type="hidden" name="timestamp" id="timestamp">
+
+                <input type="submit" value="Become a Member!">
+            </fieldset>
+        </form>
+
+        <!--Membership Cards-->
+        <div id="cardsShowHere">
+            <h2>Membership Info</h2>
+        </div>
+
+        <!--Dialog Box Format-->
+        <dialog id="memberDialog">
+            <div>
+                <h2></h2>
+                <button>✖</button>
+            </div>
+            <p></p>
+        </dialog>
+    </main>
+    <footer>
+        <div class="site-info">
+            <h3>Lasg Chamber of Commerce</h3>
+            <p>2567 50th Street</p>
+            <p>Lasg, Nigeria T9E</p>
+            <p>info@leduclcc.org</p>
+            <p>806-123-4565</p>
+        </div>
+        <div class="social-media">
+            <a href="https://www.youtube.com/" target="_blank"><img src="images/youtube-icon.svg" alt="Youtube"
+                    width="512" height="512" loading="lazy"></a>
+            <a href="https://x.com/" target="_blank"><img src="images/twitter-icon.svg" alt="Twitter" width="512"
+                    height="512" loading="lazy"></a>
+            <a href="https://www.linkedin.com/" target="_blank"><img src="images/linkedin-icon.svg" alt="LinkedIn"
+                    width="512" height="512" loading="lazy"></a>
+        </div>
+        <div class="author-info">
+            <p>WDD231 Class Project
+            <p>Kenneth Muoghalu</p>
+            <p><span id="currentyear"></span> Lasg Chamber of Commerce</p>
+            <p id="lastModified"></p>
+        </div>
+    </footer>
+</body>
+
+</html>

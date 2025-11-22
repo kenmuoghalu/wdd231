@@ -1,9 +1,6 @@
 @media only screen and (min-width: 38em) {
 
-    header,
-    main,
-    nav,
-    footer {
+    main {
         max-width: 1000px;
         margin: 0 auto;
     }
@@ -53,5 +50,10 @@
 
     #weather-api {
         display: grid;
+    }
+
+    #joinPage {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
     }
 }
