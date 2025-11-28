@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Argent Vault - Site Plan</title>
+    <style>
+        /* Color Scheme */
+        :root {
+            --primary-color: #2c3e50; /* Dark blue for headings and accents */
+            --secondary-color: #3498db; /* Bright blue for links and highlights */
+            --accent-color: #f1c40f; /* Gold for call-to-action elements */
+            --background-color: #ecf0f1; /* Light gray for backgrounds */
+            --text-color: #2c3c3d; /* Dark gray for body text */
+        }
+        
+        /* Typography */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            margin: 0;
+            padding: 0;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            color: var(--primary-color);
+        }
+        
+        h1 {
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            border-left: 5px solid var(--secondary-color);
+            padding-left: 15px;
+        }
+        
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .color-swatch {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            margin-right: 15px;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 100px;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .wireframe {
+            background-color: #f8f9fa;
+            border: 1px dashed #ccc;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .wireframe-box {
+            background-color: #e9ecef;
+            border: 1px solid #adb5bd;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 3px;
+        }
+        
+        .mobile-view, .desktop-view {
+            margin-bottom: 30px;
+        }
+        
+        .mobile-view {
+            max-width: 375px;
+        }
+        
+        .desktop-view {
+            max-width: 100%;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            border-top: 1px solid #ddd;
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>The Argent Vault - Site Plan</h1>
+            <p>This document outlines the planning for The Argent Vault website project.</p>
+        </header>
+        
+        <div class="section">
+            <h2>Site Name</h2>
+            <p><strong>The Argent Vault</strong></p>
+            <p>The name "The Argent Vault" was selected because:</p>
+            <ul>
+                <li>"Argent" is derived from Latin for silver, representing value and financial resources</li>
+                <li>"Vault" suggests security, storage, and protection of assets</li>
+                <li>Together, they create a memorable brand that conveys financial security and knowledge preservation</li>
+            </ul>
+            <p>Optional domain availability: theargentvault.com or argentvault.org</p>
+        </div>
+        
+        <div class="section">
+            <h2>Site Purpose</h2>
+            <p>The Argent Vault will provide clear, accessible financial education for young adults and college students. The site will:</p>
+            <ul>
+                <li>Offer fundamental personal finance information in an easy-to-understand format</li>
+                <li>Provide interactive tools like a budget calculator to help users apply financial concepts</li>
+                <li>Display live financial data through API integration to connect learning with real-world markets</li>
+                <li>Serve as a centralized resource for financial literacy, covering budgeting, investing, and money management basics</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>Scenarios</h2>
+            <p>These scenarios represent questions from our target audience of young adults and college students:</p>
+            <ol>
+                <li>"I just got my first paycheck from my part-time job. How much should I save versus spend?"</li>
+                <li>"I've heard I should start investing early, but I don't know anything about stocks or how to begin. Where should I start?"</li>
+                <li>"What's the difference between a need and a want when creating a budget?"</li>
+                <li>"How can I track my spending to make sure I'm staying within my budget?"</li>
+            </ol>
+        </div>
+        
+        <div class="section">
+            <h2>Color Scheme</h2>
+            <p>The selected color scheme for The Argent Vault website:</p>
+            
+            <div class="color-swatch" style="background-color: var(--primary-color);">Primary<br>#2c3e50</div>
+            <p><strong>Primary Color (#2c3e50 - Dark Blue):</strong> Used for headings, navigation elements, and footer background.</p>
+            
+            <div class="color-swatch" style="background-color: var(--secondary-color);">Secondary<br>#3498db</div>
+            <p><strong>Secondary Color (#3498db - Bright Blue):</strong> Used for links, buttons, and interactive elements.</p>
+            
+            <div class="color-swatch" style="background-color: var(--accent-color); color: #000;">Accent<br>#f1c40f</div>
+            <p><strong>Accent Color (#f1c40f - Gold):</strong> Used for call-to-action buttons, highlights, and important notices.</p>
+            
+            <div class="color-swatch" style="background-color: var(--background-color); color: #000;">Background<br>#ecf0f1</div>
+            <p><strong>Background Color (#ecf0f1 - Light Gray):</strong> Used for page background and content section backgrounds.</p>
+            
+            <div class="color-swatch" style="background-color: var(--text-color);">Text<br>#2c3c3d</div>
+            <p><strong>Text Color (#2c3c3d - Dark Gray):</strong> Used for body text and general content.</p>
+        </div>
+        
+        <div class="section">
+            <h2>Typography</h2>
+            <p>The selected fonts for The Argent Vault website:</p>
+            
+            <h3 style="font-family: Georgia, 'Times New Roman', Times, serif;">Georgia (Serif Font)</h3>
+            <p><strong>Usage:</strong> All headings (H1, H2, H3, etc.) to create a professional, trustworthy appearance.</p>
+            
+            <h3 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Segoe UI (Sans-serif Font)</h3>
+            <p><strong>Usage:</strong> Body text, navigation, buttons, and all other text elements for optimal readability.</p>
+            
+            <p><em>Note: This site plan document uses the exact typography specified above.</em></p>
+        </div>
+        
+        <div class="section">
+            <h2>Wireframe</h2>
+            <p>Wireframe sketches for the home page layout:</p>
+            
+            <div class="mobile-view">
+                <h3>Mobile View</h3>
+                <div class="wireframe">
+                    <div class="wireframe-box" style="text-align: center;">Logo / Site Name</div>
+                    <div class="wireframe-box" style="text-align: center;">Navigation Menu (Hamburger Icon)</div>
+                    <div class="wireframe-box">Hero Section: Welcome Message</div>
+                    <div class="wireframe-box">Featured Tip of the Month</div>
+                    <div class="wireframe-box">Quick Links to Budgeting & Investing</div>
+                    <div class="wireframe-box">Footer with Social Links</div>
+                </div>
+            </div>
+            
+            <div class="desktop-view">
+                <h3>Desktop/Tablet View</h3>
+                <div class="wireframe">
+                    <div style="display: flex; justify-content: space-between;">
+                        <div class="wireframe-box" style="width: 30%;">Logo / Site Name</div>
+                        <div class="wireframe-box" style="width: 65%;">Navigation Menu (Home, Budgeting, Investing)</div>
+                    </div>
+                    <div class="wireframe-box">Hero Section: Welcome Message with Key Visual</div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <div class="wireframe-box" style="width: 48%;">Featured Tip of the Month</div>
+                        <div class="wireframe-box" style="width: 48%;">Quick Links to Main Topics</div>
+                    </div>
+                    <div style="display: flex; justify-content: space-between;">
+                        <div class="wireframe-box" style="width: 48%;">Budgeting Preview</div>
+                        <div class="wireframe-box" style="width: 48%;">Investing Preview</div>
+                    </div>
+                    <div class="wireframe-box">Footer with Contact Info and Social Links</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>Files to Create</h2>
+            <p>To implement The Argent Vault website, the following files will be created:</p>
+            <ul>
+                <li><strong>index.html</strong> - Home page with introduction and navigation</li>
+                <li><strong>budgeting.html</strong> - Budgeting Basics page with interactive calculator</li>
+                <li><strong>investing.html</strong> - Investing 101 page with live market data</li>
+                <li><strong>styles/</strong> - Directory for CSS files
+                    <ul>
+                        <li><strong>main.css</strong> - Primary stylesheet for all pages</li>
+                        <li><strong>calculator.css</strong> - Specific styles for the budget calculator</li>
+                        <li><strong>responsive.css</strong> - Media queries for responsive design</li>
+                    </ul>
+                </li>
+                <li><strong>scripts/</strong> - Directory for JavaScript files
+                    <ul>
+                        <li><strong>main.js</strong> - Common functionality across all pages</li>
+                        <li><strong>calculator.js</strong> - Budget calculator logic</li>
+                        <li><strong>api.js</strong> - Financial API integration for market data</li>
+                    </ul>
+                </li>
+                <li><strong>images/</strong> - Directory for all website images and graphics</li>
+            </ul>
+        </div>
+        
+        <footer>
+            <p>The Argent Vault Site Plan | Last Updated: <span id="currentDate"></span></p>
+        </footer>
+    </div>
+    
+    <script>
+        // Add current date to footer
+        document.getElementById('currentDate').textContent = new Date().toLocaleDateString();
+    </script>
+</body>
+</html>
