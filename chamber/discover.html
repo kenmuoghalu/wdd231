@@ -5,16 +5,16 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Lasg Chamber of Commerce</title>
+    <title>Discover</title>
     <meta name="description"
         content="Home Page for Lasg Chamber of Commerce. Find out about the services that we provide for businesses.">
     <meta name="author" content="Kenneth Muoghalu">
 
     <!--Social Media Tags-->
     <!--Facebook-->
-    <meta property="og:title" content="Lasg Chamber of Commerce">
+    <meta property="og:title" content="Discover Lasg Chamber of Commerce">
     <meta property="og:description"
-        content="Explore the services and membership benefits we provide for business locally in Lasg, Nigeria.">
+        content="Find out about Lasg, Lagos and what makes it appealing to small and large businesses.">
     <meta property="og:image" content="https://kenmuoghalu.github.io/wdd231/chamber/images/social-media-photo.webp">
     <meta property="og:url" content="https://kenmuoghalu.github.io/wdd231/chamber/directory.html">
 
@@ -23,6 +23,7 @@
 
     <!--Stylesheets-->
     <link rel="stylesheet" href="styles/small.css">
+    <link rel="stylesheet" href="styles/medium.css">
     <link rel="stylesheet" href="styles/large.css">
 
     <!--Fonts-->
@@ -35,8 +36,7 @@
     <!--Scripts-->
     <script src="scripts/date.js" defer></script>
     <script src="scripts/navigation.js" defer></script>
-    <script src="scripts/spotlight-cards.js" defer></script>
-    <script src="scripts/weather-api.js" defer></script>
+    <script src="scripts/discover-cards.js" type="module"></script>
 
 </head>
 
@@ -48,45 +48,14 @@
     </header>
     <nav id="nav-bar" class="navigation">
         <ul>
-            <li class="current"><a href="index.html">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="directory.html">Directory</a></li>
             <li><a href="join.html">Join</a></li>
-            <li><a href="discover.html">Discover</a></li>
+            <li class="current"><a href="discover.html">Discover</a></li>
         </ul>
     </nav>
-    <main>
-        <div class="hero">
-            <img src="images/hero.webp" alt="Employees Collaborating Photo" width="700" height="466">
-            <button title="Become A Member" id="joinBtn">Become a Member</button>
-        </div>
-        <h1>Home</h1>
-        <div class="info-cards">
-            <section>
-                <h2>Events</h2>
-            </section>
-            <section id="weather-api">
-                <h2>Current Weather</h2>
-                <figure><img id="weather-icon" src="#" alt="" loading="lazy"></figure>
-                <p>
-                    <span id="current-temp"></span><br>
-                    <span id="weather-desc"></span><br>
-                    High: <span id="high-temp"></span><br>
-                    Low: <span id="low-temp"></span><br>
-                    Humidity: <span id="humidity"></span><br>
-                    Sunrise: <span id="sunrise-time"></span><br>
-                    Sunset: <span id="sunset-time"></span><br>
-                </p>
-            </section>
-            <section id="weather-forecast">
-                <h2>Weather Forecast</h2>
-                <p id="three-day-weather">
-
-                </p>
-            </section>
-        </div>
-        <div id="spot-business-cards" class="grid-view">
-
-        </div>
+    <main id="discover-page">
+        <h1>Discover Lasg <br><span id="visitor-msg"></span></h1>
     </main>
     <footer>
         <div class="site-info">
@@ -94,7 +63,7 @@
             <p>2567 50th Street</p>
             <p>Lasg, Nigeria T9E</p>
             <p>info@leduclcc.org</p>
-            <p>(806)-123-4565</p>
+            <p>(806)-123-4975</p>
         </div>
         <div class="social-media">
             <a href="https://www.youtube.com/" target="_blank"><img src="images/youtube-icon.svg" alt="Youtube"
@@ -106,7 +75,7 @@
         </div>
         <div class="author-info">
             <p>WDD231 Class Project
-            <p>Kenneth Muoghalu</p>
+            <p>Kenneth Muoghalu </p>
             <p><span id="currentyear"></span> Lasg Chamber of Commerce</p>
             <p id="lastModified"></p>
         </div>

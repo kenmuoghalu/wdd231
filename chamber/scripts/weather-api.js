@@ -164,3 +164,10 @@ function getSunriseLocalTime(dataObj) {
 
 currentWeatherApiFetch();
 threeDayForecastApiFetch();
+
+//Add button even listener to become a member
+const joinBtn = document.querySelector("#joinBtn");
+
+joinBtn.addEventListener("click", () => {
+    window.location.href = 'join.html';
+});

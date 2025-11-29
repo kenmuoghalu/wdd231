@@ -1,21 +1,11 @@
-@media only screen and (min-width: 64rem) {
-
-    #discover-page {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-
-    #discover-page h1 {
-        grid-column: 1/3;
-    }
+@media only screen and (min-width: 38rem) {
 
     #discover-page .discover-cards {
         grid-template-areas:
-            "name"
-            "photo"
-            "description"
-            "address"
-            "learnbtn";
+            "photo name"
+            "photo description"
+            "photo address"
+            "photo learnbtn";
     }
 
     main {
