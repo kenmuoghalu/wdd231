@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Submission Confirmation | The Argent Vault</title>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <img src="images/logo.svg" alt="The Argent Vault Logo" width="50" height="50">
+                <h1>The Argent Vault</h1>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="confirmation-section">
+            <h2>Thank You for Subscribing!</h2>
+            <div id="formDataDisplay" class="form-data">
+                <!-- Form data will be displayed here -->
+            </div>
+            
+            <div class="confirmation-message">
+                <h3>What Happens Next?</h3>
+                <ul>
+                    <li>You'll receive a welcome email within 5 minutes</li>
+                    <li>Weekly financial tips every Monday</li>
+                    <li>Monthly market insights</li>
+                    <li>Exclusive access to our budgeting tools</li>
+                </ul>
+                
+                <a href="index.html" class="btn-primary">Back to Home</a>
+                <a href="budgeting.html" class="btn-secondary">Start Budgeting</a>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Display form data from URL parameters
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const formDataDisplay = document.getElementById('formDataDisplay');
+            
+            if (urlParams.toString()) {
+                let html = '<h3>Your Subscription Details:</h3><ul>';
+                
+                urlParams.forEach((value, key) => {
+                    const label = key.charAt(0).toUpperCase() + key.slice(1);
+                    html += `<li><strong>${label}:</strong> ${decodeURIComponent(value)}</li>`;
+                });
+                
+                html += '</ul>';
+                formDataDisplay.innerHTML = html;
+            }
+        });
+    </script>
+</body>
+</html>

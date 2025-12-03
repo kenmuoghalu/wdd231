@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Budgeting Basics with interactive calculator - Learn to manage your finances effectively">
+    <title>Budgeting Basics | The Argent Vault</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/calculator.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="images/logo.svg" alt="The Argent Vault Logo" width="50" height="50">
+                <h1>The Argent Vault</h1>
+            </div>
+            
+            <button class="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="budgeting.html" class="active">Budgeting</a></li>
+                    <li><a href="investing.html">Investing</a></li>
+                    <li><a href="#calculator" class="btn-secondary">Try Calculator</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="page-hero">
+            <h1>Budgeting Basics</h1>
+            <p>Learn to control your money instead of letting it control you</p>
+        </section>
+
+        <section class="budgeting-content">
+            <div class="content-grid">
+                <article class="content-card">
+                    <img src="images/budgeting-icon.png" alt="Budgeting Icon" width="80" height="80">
+                    <h2>Why Budget?</h2>
+                    <p>A budget gives you control over your money, helps you save for goals, and reduces financial stress.</p>
+                </article>
+                
+                <article class="content-card">
+                    <img src="images/savings-icon.png" alt="Savings Icon" width="80" height="80">
+                    <h2>The 50/30/20 Rule</h2>
+                    <p>Allocate 50% to needs, 30% to wants, and 20% to savings and debt repayment.</p>
+                </article>
+                
+                <article class="content-card">
+                    <img src="images/debt-icon.png" alt="Debt Icon" width="80" height="80">
+                    <h2>Debt Management</h2>
+                    <p>Learn strategies to pay off debt efficiently while maintaining your budget.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- Interactive Budget Calculator -->
+        <section id="calculator" class="calculator-section">
+            <h2>Budget Calculator</h2>
+            <div class="calculator-container">
+                <div class="calculator-inputs">
+                    <div class="input-group">
+                        <label for="income">Monthly Income ($)</label>
+                        <input type="number" id="income" min="0" value="3000">
+                    </div>
+                    
+                    <div class="expense-categories">
+                        <h3>Monthly Expenses</h3>
+                        <div id="expenseInputs">
+                            <!-- Expense inputs will be added here -->
+                        </div>
+                        <button id="addExpense" class="btn-secondary">+ Add Expense</button>
+                    </div>
+                    
+                    <button id="calculateBudget" class="btn-primary">Calculate Budget</button>
+                    <button id="saveBudget" class="btn-secondary">Save to Profile</button>
+                </div>
+                
+                <div class="calculator-results">
+                    <h3>Budget Breakdown</h3>
+                    <div id="resultsDisplay"></div>
+                    <canvas id="budgetChart" width="400" height="300"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Local Storage Display -->
+        <section class="saved-budgets">
+            <h2>Your Saved Budgets</h2>
+            <div id="savedBudgetsList" class="budgets-list">
+                <!-- Saved budgets will appear here -->
+            </div>
+        </section>
+
+        <!-- Dynamic Budgeting Tips -->
+        <section class="dynamic-tips">
+            <h2>Personalized Budgeting Tips</h2>
+            <div id="dynamicTips"></div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>© 2025 |Kenneth Muoghalu |wdd231 project| The Argent Vault - Budgeting Education</p>
+        </div>
+    </footer>
+
+    <script src="scripts/calculator.js" type="module"></script>
+</body>
+</html>

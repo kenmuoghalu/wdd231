@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Argent Vault - Your personal finance education hub for budgeting, investing, and financial literacy.">
+    <title>The Argent Vault - Personal Finance Education</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <link rel="stylesheet" href="styles/modal.css">
+    <<link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Roboto:ital,wdth,wght@0,75..100,100..900;1,75..100,100..900&display=swap" rel="stylesheet">
+   </head>
+    <body>
+    <!-- Modal for budget tips -->
+    <div id="budgetTipsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Budgeting Tips</h2>
+            <div id="modalTipsContent"></div>
+        </div>
+    </div>
+
+    <!-- Header with responsive navigation -->
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="logo">
+                <img src="images/logo.svg" alt="The Argent Vault Logo" width="50" height="50">
+                <h1>The Argent Vault</h1>
+            </div>
+            
+            <button class="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="budgeting.html">Budgeting</a></li>
+                    <li><a href="investing.html">Investing</a></li>
+                    <li><a href="#newsletter" class="btn-secondary">Newsletter</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Master Your Finances, Secure Your Future</h2>
+                <p>Free financial education for students and young adults. Learn budgeting, investing, and money management.</p>
+                <a href="#get-started" class="btn-primary">Start Learning Free</a>
+            </div>
+            <div class="hero-image">
+                <img src="images/hero-finance.svg" alt="Financial Growth Illustration" width="400" height="300">
+            </div>
+        </div>
+    </section>
+
+    <!-- Financial Topics Grid -->
+    <section class="topics-section">
+        <div class="container">
+            <h2>Financial Topics</h2>
+            <div class="topics-grid" id="topicsContainer">
+                <!-- Topics will be dynamically loaded -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Articles -->
+    <section class="articles-section">
+        <div class="container">
+            <h2>Latest Articles</h2>
+            <div class="articles-grid">
+                <article class="article-card">
+                    <img src="images/article-placeholder.jpg" alt="Budgeting for Beginners" width="300" height="200">
+                    <div class="article-content">
+                        <h3>The 50/30/20 Budget Rule Explained</h3>
+                        <p>Learn how to allocate your income effectively using this simple budgeting method.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </article>
+                
+                <article class="article-card">
+                    <img src="images/article-placeholder.jpg" alt="Investment Basics" width="300" height="200">
+                    <div class="article-content">
+                        <h3>How to Start Investing with $100</h3>
+                        <p>Beginner-friendly guide to start your investment journey with minimal capital.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </article>
+                
+                <article class="article-card">
+                    <img src="images/article-placeholder.jpg" alt="Debt Management" width="300" height="200">
+                    <div class="article-content">
+                        <h3>Smart Ways to Pay Off Student Loans</h3>
+                        <p>Strategies to manage and eliminate student debt efficiently.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Form -->
+    <section id="newsletter" class="newsletter-section">
+        <div class="container">
+            <h2>Stay Updated</h2>
+            <p>Get weekly financial tips and market insights</p>
+            <form id="newsletterForm" class="newsletter-form">
+                <div class="form-group">
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    <label for="name">Name</label>
+                </div>
+                
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                    <label for="email">Email</label>
+                </div>
+                
+                <div class="form-group">
+                    <select id="interest" name="interest" required>
+                        <option value="">Select Interest</option>
+                        <option value="budgeting">Budgeting</option>
+                        <option value="investing">Investing</option>
+                        <option value="saving">Saving</option>
+                        <option value="debt">Debt Management</option>
+                    </select>
+                    <label for="interest">Main Interest</label>
+                </div>
+                
+                <button type="submit" class="btn-primary">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Tips Section -->
+    <section class="tips-section">
+        <div class="container">
+            <h2>Monthly Financial Tips</h2>
+            <button id="showTipsBtn" class="btn-secondary">View This Month's Tips</button>
+            <div id="tipsDisplay" class="tips-container"></div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>The Argent Vault</h3>
+                    <p>Empowering financial literacy since 2024</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="budgeting.html">Budgeting</a></li>
+                        <li><a href="investing.html">Investing</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Glossary</a></li>
+                        <li><a href="#">Calculators</a></li>
+                        <li><a href="#">Templates</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <p>contact@theargentvault.com</p>
+                    <p>© 2025 The Argent Vault</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="scripts/main.js"></script>
+</body>
+</html>
