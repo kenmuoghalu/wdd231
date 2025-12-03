@@ -8,6 +8,297 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/calculator.css">
     <link rel="stylesheet" href="styles/responsive.css">
+    <style>
+        /* Additional styles for clickable sections */
+        .clickable-section {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .clickable-section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .budget-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            background-color: #f9f9f9;
+        }
+        
+        .budget-card.expanded {
+            background-color: #f0f8ff;
+            border-color: #4a90e2;
+        }
+        
+        .budget-details {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed #ccc;
+        }
+        
+        .budget-details.active {
+            display: block;
+        }
+        
+        .tip-card {
+            border-left: 4px solid #4a90e2;
+            padding: 15px;
+            margin: 10px 0;
+            background-color: #fff;
+        }
+        
+        .tip-card.expanded {
+            background-color: #f8f9fa;
+        }
+        
+        .tip-content {
+            display: none;
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        
+        .tip-content.active {
+            display: block;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .toggle-icon {
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        /* Enhanced Budget Breakdown Styles */
+        .calculator-results {
+            position: relative;
+            background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
+                        url('images/calculator-bg.png') center/cover no-repeat;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border: 2px solid #e8f4ff;
+            min-height: 400px;
+        }
+        
+        .calculator-results::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('images/calculator-bg.png') center/cover no-repeat;
+            opacity: 0.08;
+            z-index: -1;
+            border-radius: 12px;
+        }
+        
+        .budget-breakdown-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .breakdown-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid #4a90e2;
+            transition: transform 0.3s ease;
+        }
+        
+        .breakdown-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .breakdown-card.needs {
+            border-top-color: #ff6b6b;
+        }
+        
+        .breakdown-card.wants {
+            border-top-color: #4ecdc4;
+        }
+        
+        .breakdown-card.savings {
+            border-top-color: #45b7d1;
+        }
+        
+        .breakdown-card.debt {
+            border-top-color: #96ceb4;
+        }
+        
+        .breakdown-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .breakdown-amount {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .breakdown-percentage {
+            font-size: 1rem;
+            color: #7f8c8d;
+            background: #f8f9fa;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 500;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background: #ecf0f1;
+            border-radius: 4px;
+            margin: 15px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+        
+        .progress-needs {
+            background: linear-gradient(90deg, #ff6b6b, #ff8e8e);
+        }
+        
+        .progress-wants {
+            background: linear-gradient(90deg, #4ecdc4, #6de6dd);
+        }
+        
+        .progress-savings {
+            background: linear-gradient(90deg, #45b7d1, #64d7f0);
+        }
+        
+        .budget-summary-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            color: white;
+        }
+        
+        .stat-item {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        .budget-health {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid #e8f4ff;
+        }
+        
+        .health-indicator {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .health-meter {
+            flex: 1;
+            height: 20px;
+            background: #ecf0f1;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .health-level {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+        
+        .health-good {
+            background: linear-gradient(90deg, #2ecc71, #27ae60);
+        }
+        
+        .health-fair {
+            background: linear-gradient(90deg, #f39c12, #e67e22);
+        }
+        
+        .health-poor {
+            background: linear-gradient(90deg, #e74c3c, #c0392b);
+        }
+        
+        .health-label {
+            font-weight: bold;
+            min-width: 80px;
+        }
+        
+        .budget-tips {
+            background: #fff9e6;
+            border-left: 4px solid #f1c40f;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+        
+        .budget-tips h4 {
+            color: #d35400;
+            margin-bottom: 10px;
+        }
+        
+        .tip-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        
+        .tip-icon {
+            color: #f1c40f;
+            font-size: 1.2rem;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .budget-breakdown-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .budget-summary-stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .calculator-results {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="main-header">
@@ -86,24 +377,161 @@
                 
                 <div class="calculator-results">
                     <h3>Budget Breakdown</h3>
-                    <div id="resultsDisplay"></div>
-                    <canvas id="budgetChart" width="400" height="300"></canvas>
+                    <div id="resultsDisplay">
+                        <!-- Enhanced Budget Breakdown Content -->
+                        <div class="budget-health">
+                            <h4>Your Budget Health</h4>
+                            <div class="health-indicator">
+                                <span class="health-label">Score: 78/100</span>
+                                <div class="health-meter">
+                                    <div class="health-level health-good" style="width: 78%"></div>
+                                </div>
+                                <span class="health-status">Good</span>
+                            </div>
+                        </div>
+                        
+                        <div class="budget-breakdown-grid">
+                            <div class="breakdown-card needs">
+                                <div class="breakdown-header">
+                                    <h4>Essential Needs</h4>
+                                    <div>
+                                        <span class="breakdown-amount">$1,500</span>
+                                        <span class="breakdown-percentage">50%</span>
+                                    </div>
+                                </div>
+                                <p>Housing, food, utilities, insurance</p>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-needs" style="width: 50%"></div>
+                                </div>
+                                <div class="breakdown-details">
+                                    <small>Recommended: ≤50% of income</small>
+                                </div>
+                            </div>
+                            
+                            <div class="breakdown-card wants">
+                                <div class="breakdown-header">
+                                    <h4>Lifestyle Wants</h4>
+                                    <div>
+                                        <span class="breakdown-amount">$900</span>
+                                        <span class="breakdown-percentage">30%</span>
+                                    </div>
+                                </div>
+                                <p>Entertainment, dining out, subscriptions</p>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-wants" style="width: 30%"></div>
+                                </div>
+                                <div class="breakdown-details">
+                                    <small>Recommended: ≤30% of income</small>
+                                </div>
+                            </div>
+                            
+                            <div class="breakdown-card savings">
+                                <div class="breakdown-header">
+                                    <h4>Savings & Investments</h4>
+                                    <div>
+                                        <span class="breakdown-amount">$600</span>
+                                        <span class="breakdown-percentage">20%</span>
+                                    </div>
+                                </div>
+                                <p>Emergency fund, retirement, investments</p>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-savings" style="width: 20%"></div>
+                                </div>
+                                <div class="breakdown-details">
+                                    <small>Recommended: ≥20% of income</small>
+                                </div>
+                            </div>
+                            
+                            <div class="breakdown-card debt">
+                                <div class="breakdown-header">
+                                    <h4>Debt Repayment</h4>
+                                    <div>
+                                        <span class="breakdown-amount">$300</span>
+                                        <span class="breakdown-percentage">10%</span>
+                                    </div>
+                                </div>
+                                <p>Credit cards, loans, mortgages</p>
+                                <div class="progress-bar">
+                                    <div class="progress-fill progress-debt" style="width: 10%"></div>
+                                </div>
+                                <div class="breakdown-details">
+                                    <small>Included in savings category</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="budget-summary-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">$3,000</div>
+                                <div class="stat-label">Monthly Income</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">$2,400</div>
+                                <div class="stat-label">Total Expenses</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">$600</div>
+                                <div class="stat-label">Monthly Savings</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">20%</div>
+                                <div class="stat-label">Savings Rate</div>
+                            </div>
+                        </div>
+                        
+                        <div class="budget-tips">
+                            <h4>💡 Budget Optimization Tips</h4>
+                            <div class="tip-item">
+                                <span class="tip-icon">✓</span>
+                                <span>Your savings rate is excellent! Consider increasing retirement contributions</span>
+                            </div>
+                            <div class="tip-item">
+                                <span class="tip-icon">⚠️</span>
+                                <span>Your grocery spending is 15% above average for your income level</span>
+                            </div>
+                            <div class="tip-item">
+                                <span class="tip-icon">🎯</span>
+                                <span>You could save $150/month by optimizing subscriptions</span>
+                            </div>
+                        </div>
+                        
+                        <canvas id="budgetChart" width="400" height="300"></canvas>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Local Storage Display -->
+        <!-- Local Storage Display - Now Clickable -->
         <section class="saved-budgets">
-            <h2>Your Saved Budgets</h2>
-            <div id="savedBudgetsList" class="budgets-list">
+            <div class="section-header">
+                <h2>Your Saved Budgets</h2>
+                <span class="toggle-icon" id="toggleAllBudgets">▼</span>
+            </div>
+            <div id="savedBudgetsList" class="budgets-list clickable-section">
                 <!-- Saved budgets will appear here -->
+                <!-- This will be populated by JavaScript -->
+                <div class="empty-state" id="noBudgetsMessage">
+                    <p>No saved budgets yet. Create and save a budget using the calculator above!</p>
+                </div>
             </div>
         </section>
 
-        <!-- Dynamic Budgeting Tips -->
+        <!-- Dynamic Budgeting Tips - Now Clickable -->
         <section class="dynamic-tips">
-            <h2>Personalized Budgeting Tips</h2>
-            <div id="dynamicTips"></div>
+            <div class="section-header">
+                <h2>Personalized Budgeting Tips</h2>
+                <span class="toggle-icon" id="toggleAllTips">▼</span>
+            </div>
+            <div id="dynamicTips" class="clickable-section">
+                <!-- Tips will be loaded here -->
+                <!-- This will be populated by JavaScript -->
+                <div class="tip-card">
+                    <h3>Loading personalized tips...</h3>
+                    <div class="tip-content">
+                        <p>Based on your budget, we'll provide customized advice to improve your financial health.</p>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
@@ -114,5 +542,451 @@
     </footer>
 
     <script src="scripts/calculator.js" type="module"></script>
+    
+    <!-- Additional JavaScript for clickable sections -->
+    <script>
+        // Wait for DOM to load
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Sample saved budgets data (in real app, this would come from localStorage)
+            const sampleBudgets = [
+                {
+                    id: 1,
+                    name: "Monthly Budget - March 2025",
+                    income: 3000,
+                    expenses: [
+                        { category: "Rent", amount: 900 },
+                        { category: "Groceries", amount: 400 },
+                        { category: "Transportation", amount: 150 },
+                        { category: "Entertainment", amount: 200 }
+                    ],
+                    savings: 350,
+                    date: "2025-03-15"
+                },
+                {
+                    id: 2,
+                    name: "Side Hustle Budget",
+                    income: 1500,
+                    expenses: [
+                        { category: "Equipment", amount: 200 },
+                        { category: "Marketing", amount: 100 },
+                        { category: "Tax Savings", amount: 300 }
+                    ],
+                    savings: 450,
+                    date: "2025-03-10"
+                }
+            ];
+            
+            // Sample personalized tips
+            const sampleTips = [
+                {
+                    id: 1,
+                    title: "Reduce Food Expenses",
+                    category: "Savings",
+                    content: "Based on your budget, you're spending 25% of your income on food. Consider meal planning and cooking at home more often to save up to $100 per month.",
+                    priority: "high"
+                },
+                {
+                    id: 2,
+                    title: "Emergency Fund Progress",
+                    category: "Planning",
+                    content: "Great job! You're saving 15% of your income. At this rate, you'll have a 3-month emergency fund in about 8 months.",
+                    priority: "medium"
+                },
+                {
+                    id: 3,
+                    title: "Debt Reduction Strategy",
+                    category: "Debt",
+                    content: "If you have high-interest debt, consider allocating an additional 5% of your income to pay it off faster. This could save you hundreds in interest.",
+                    priority: "high"
+                }
+            ];
+            
+            // DOM elements
+            const savedBudgetsList = document.getElementById('savedBudgetsList');
+            const dynamicTips = document.getElementById('dynamicTips');
+            const toggleAllBudgets = document.getElementById('toggleAllBudgets');
+            const toggleAllTips = document.getElementById('toggleAllTips');
+            const noBudgetsMessage = document.getElementById('noBudgetsMessage');
+            
+            // Load saved budgets on page load
+            function loadSavedBudgets() {
+                // Clear existing content (except the empty state message)
+                const existingBudgets = savedBudgetsList.querySelectorAll('.budget-card');
+                existingBudgets.forEach(budget => budget.remove());
+                
+                // Check if there are any budgets
+                if (sampleBudgets.length === 0) {
+                    noBudgetsMessage.style.display = 'block';
+                    return;
+                }
+                
+                noBudgetsMessage.style.display = 'none';
+                
+                // Create budget cards
+                sampleBudgets.forEach(budget => {
+                    const budgetCard = document.createElement('div');
+                    budgetCard.className = 'budget-card clickable-section';
+                    budgetCard.dataset.id = budget.id;
+                    
+                    // Calculate total expenses
+                    const totalExpenses = budget.expenses.reduce((sum, expense) => sum + expense.amount, 0);
+                    const savingsRate = ((budget.savings / budget.income) * 100).toFixed(1);
+                    
+                    budgetCard.innerHTML = `
+                        <div class="budget-summary">
+                            <h3>${budget.name}</h3>
+                            <p><strong>Income:</strong> $${budget.income.toLocaleString()}</p>
+                            <p><strong>Total Expenses:</strong> $${totalExpenses.toLocaleString()}</p>
+                            <p><strong>Savings:</strong> $${budget.savings.toLocaleString()} (${savingsRate}%)</p>
+                            <p><strong>Date:</strong> ${budget.date}</p>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="budget-details">
+                            <h4>Expense Breakdown</h4>
+                            <ul>
+                                ${budget.expenses.map(expense => 
+                                    `<li>${expense.category}: $${expense.amount.toLocaleString()}</li>`
+                                ).join('')}
+                            </ul>
+                            <div class="budget-actions">
+                                <button class="btn-secondary load-budget" data-id="${budget.id}">Load to Calculator</button>
+                                <button class="btn-secondary delete-budget" data-id="${budget.id}">Delete</button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    savedBudgetsList.appendChild(budgetCard);
+                });
+                
+                // Add click event to budget cards
+                document.querySelectorAll('.budget-card').forEach(card => {
+                    card.addEventListener('click', function(e) {
+                        // Don't trigger if clicking on buttons inside the card
+                        if (e.target.classList.contains('btn-secondary')) {
+                            return;
+                        }
+                        
+                        const details = this.querySelector('.budget-details');
+                        const toggleIcon = this.querySelector('.toggle-icon');
+                        
+                        // Toggle the expanded class
+                        this.classList.toggle('expanded');
+                        details.classList.toggle('active');
+                        
+                        // Change toggle icon
+                        if (this.classList.contains('expanded')) {
+                            toggleIcon.textContent = '▲';
+                        } else {
+                            toggleIcon.textContent = '▼';
+                        }
+                    });
+                });
+                
+                // Add event listeners to load buttons
+                document.querySelectorAll('.load-budget').forEach(button => {
+                    button.addEventListener('click', function(e) {
+                        e.stopPropagation(); // Prevent card click event
+                        const budgetId = this.dataset.id;
+                        loadBudgetToCalculator(budgetId);
+                    });
+                });
+                
+                // Add event listeners to delete buttons
+                document.querySelectorAll('.delete-budget').forEach(button => {
+                    button.addEventListener('click', function(e) {
+                        e.stopPropagation(); // Prevent card click event
+                        const budgetId = this.dataset.id;
+                        deleteBudget(budgetId);
+                    });
+                });
+            }
+            
+            // Load personalized tips
+            function loadPersonalizedTips() {
+                // Clear existing tips
+                dynamicTips.innerHTML = '';
+                
+                // Create tip cards
+                sampleTips.forEach(tip => {
+                    const tipCard = document.createElement('div');
+                    tipCard.className = `tip-card clickable-section ${tip.priority}-priority`;
+                    tipCard.dataset.id = tip.id;
+                    
+                    tipCard.innerHTML = `
+                        <div class="tip-summary">
+                            <div class="tip-header">
+                                <h3>${tip.title}</h3>
+                                <span class="tip-category">${tip.category}</span>
+                            </div>
+                            <p class="tip-preview">${tip.content.substring(0, 80)}...</p>
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="tip-content">
+                            <p>${tip.content}</p>
+                            <div class="tip-actions">
+                                <button class="btn-secondary mark-read" data-id="${tip.id}">Mark as Read</button>
+                                <button class="btn-secondary save-tip" data-id="${tip.id}">Save Tip</button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    dynamicTips.appendChild(tipCard);
+                });
+                
+                // Add click event to tip cards
+                document.querySelectorAll('.tip-card').forEach(card => {
+                    card.addEventListener('click', function(e) {
+                        // Don't trigger if clicking on buttons inside the card
+                        if (e.target.classList.contains('btn-secondary')) {
+                            return;
+                        }
+                        
+                        const content = this.querySelector('.tip-content');
+                        const toggleIcon = this.querySelector('.toggle-icon');
+                        
+                        // Toggle the expanded class
+                        this.classList.toggle('expanded');
+                        content.classList.toggle('active');
+                        
+                        // Change toggle icon
+                        if (this.classList.contains('expanded')) {
+                            toggleIcon.textContent = '▲';
+                        } else {
+                            toggleIcon.textContent = '▼';
+                        }
+                    });
+                });
+                
+                // Add event listeners to tip action buttons
+                document.querySelectorAll('.mark-read').forEach(button => {
+                    button.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const tipId = this.dataset.id;
+                        markTipAsRead(tipId);
+                    });
+                });
+                
+                document.querySelectorAll('.save-tip').forEach(button => {
+                    button.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const tipId = this.dataset.id;
+                        saveTip(tipId);
+                    });
+                });
+            }
+            
+            // Toggle all budgets expanded/collapsed
+            toggleAllBudgets.addEventListener('click', function() {
+                const allCards = document.querySelectorAll('.budget-card');
+                const allExpanded = Array.from(allCards).every(card => card.classList.contains('expanded'));
+                
+                allCards.forEach(card => {
+                    const details = card.querySelector('.budget-details');
+                    const toggleIcon = card.querySelector('.toggle-icon');
+                    
+                    if (allExpanded) {
+                        // Collapse all
+                        card.classList.remove('expanded');
+                        details.classList.remove('active');
+                        toggleIcon.textContent = '▼';
+                    } else {
+                        // Expand all
+                        card.classList.add('expanded');
+                        details.classList.add('active');
+                        toggleIcon.textContent = '▲';
+                    }
+                });
+                
+                // Update toggle icon
+                this.textContent = allExpanded ? '▼' : '▲';
+            });
+            
+            // Toggle all tips expanded/collapsed
+            toggleAllTips.addEventListener('click', function() {
+                const allTips = document.querySelectorAll('.tip-card');
+                const allExpanded = Array.from(allTips).every(tip => tip.classList.contains('expanded'));
+                
+                allTips.forEach(tip => {
+                    const content = tip.querySelector('.tip-content');
+                    const toggleIcon = tip.querySelector('.toggle-icon');
+                    
+                    if (allExpanded) {
+                        // Collapse all
+                        tip.classList.remove('expanded');
+                        content.classList.remove('active');
+                        toggleIcon.textContent = '▼';
+                    } else {
+                        // Expand all
+                        tip.classList.add('expanded');
+                        content.classList.add('active');
+                        toggleIcon.textContent = '▲';
+                    }
+                });
+                
+                // Update toggle icon
+                this.textContent = allExpanded ? '▼' : '▲';
+            });
+            
+            // Function to load a budget to the calculator
+            function loadBudgetToCalculator(budgetId) {
+                const budget = sampleBudgets.find(b => b.id == budgetId);
+                if (!budget) return;
+                
+                // Update calculator inputs
+                document.getElementById('income').value = budget.income;
+                
+                // Update the budget breakdown display
+                updateBudgetBreakdownDisplay(budget);
+                
+                // Scroll to calculator
+                document.getElementById('calculator').scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            // Function to update budget breakdown display
+            function updateBudgetBreakdownDisplay(budget) {
+                const totalExpenses = budget.expenses.reduce((sum, expense) => sum + expense.amount, 0);
+                const savings = budget.savings || (budget.income - totalExpenses);
+                const savingsRate = ((savings / budget.income) * 100).toFixed(1);
+                
+                // Calculate categories (in a real app, you'd categorize expenses properly)
+                const needs = budget.expenses.filter(e => 
+                    ['Rent', 'Mortgage', 'Utilities', 'Insurance'].includes(e.category)
+                ).reduce((sum, e) => sum + e.amount, 0);
+                
+                const wants = budget.expenses.filter(e => 
+                    ['Entertainment', 'Dining', 'Shopping'].includes(e.category)
+                ).reduce((sum, e) => sum + e.amount, 0);
+                
+                // Update the display
+                const needsAmount = document.querySelector('.breakdown-card.needs .breakdown-amount');
+                const needsPercentage = document.querySelector('.breakdown-card.needs .breakdown-percentage');
+                const needsProgress = document.querySelector('.breakdown-card.needs .progress-fill');
+                
+                const wantsAmount = document.querySelector('.breakdown-card.wants .breakdown-amount');
+                const wantsPercentage = document.querySelector('.breakdown-card.wants .breakdown-percentage');
+                const wantsProgress = document.querySelector('.breakdown-card.wants .progress-fill');
+                
+                const savingsAmount = document.querySelector('.breakdown-card.savings .breakdown-amount');
+                const savingsPercentage = document.querySelector('.breakdown-card.savings .breakdown-percentage');
+                const savingsProgress = document.querySelector('.breakdown-card.savings .progress-fill');
+                
+                // Update values
+                if (needsAmount) {
+                    needsAmount.textContent = `$${needs.toLocaleString()}`;
+                    const needsPct = ((needs / budget.income) * 100).toFixed(1);
+                    needsPercentage.textContent = `${needsPct}%`;
+                    needsProgress.style.width = `${Math.min(100, needsPct)}%`;
+                }
+                
+                if (wantsAmount) {
+                    wantsAmount.textContent = `$${wants.toLocaleString()}`;
+                    const wantsPct = ((wants / budget.income) * 100).toFixed(1);
+                    wantsPercentage.textContent = `${wantsPct}%`;
+                    wantsProgress.style.width = `${Math.min(100, wantsPct)}%`;
+                }
+                
+                if (savingsAmount) {
+                    savingsAmount.textContent = `$${savings.toLocaleString()}`;
+                    savingsPercentage.textContent = `${savingsRate}%`;
+                    savingsProgress.style.width = `${Math.min(100, savingsRate)}%`;
+                }
+                
+                // Update summary stats
+                document.querySelector('.stat-item:nth-child(1) .stat-value').textContent = 
+                    `$${budget.income.toLocaleString()}`;
+                document.querySelector('.stat-item:nth-child(2) .stat-value').textContent = 
+                    `$${totalExpenses.toLocaleString()}`;
+                document.querySelector('.stat-item:nth-child(3) .stat-value').textContent = 
+                    `$${savings.toLocaleString()}`;
+                document.querySelector('.stat-item:nth-child(4) .stat-value').textContent = 
+                    `${savingsRate}%`;
+                
+                // Update health meter based on savings rate
+                const healthLevel = document.querySelector('.health-level');
+                const healthStatus = document.querySelector('.health-status');
+                const savingsRateNum = parseFloat(savingsRate);
+                
+                if (savingsRateNum >= 20) {
+                    healthLevel.className = 'health-level health-good';
+                    healthLevel.style.width = '85%';
+                    healthStatus.textContent = 'Excellent';
+                } else if (savingsRateNum >= 10) {
+                    healthLevel.className = 'health-level health-fair';
+                    healthLevel.style.width = '65%';
+                    healthStatus.textContent = 'Good';
+                } else {
+                    healthLevel.className = 'health-level health-poor';
+                    healthLevel.style.width = '40%';
+                    healthStatus.textContent = 'Needs Improvement';
+                }
+                
+                // Show success message
+                alert(`Budget "${budget.name}" loaded successfully!`);
+            }
+            
+            // Function to delete a budget
+            function deleteBudget(budgetId) {
+                if (confirm('Are you sure you want to delete this budget?')) {
+                    // In a real app, remove from localStorage
+                    alert(`Budget ${budgetId} deleted successfully!`);
+                    loadSavedBudgets(); // Refresh the list
+                }
+            }
+            
+            // Function to mark a tip as read
+            function markTipAsRead(tipId) {
+                alert(`Tip ${tipId} marked as read!`);
+                // In a real app, update localStorage
+            }
+            
+            // Function to save a tip
+            function saveTip(tipId) {
+                alert(`Tip ${tipId} saved to your profile!`);
+                // In a real app, save to localStorage
+            }
+            
+            // Initialize the page
+            loadSavedBudgets();
+            loadPersonalizedTips();
+            
+            // Add some interactivity to the calculator buttons
+            document.getElementById('saveBudget')?.addEventListener('click', function() {
+                // After saving, reload the budgets list
+                setTimeout(loadSavedBudgets, 500);
+            });
+            
+            // Update budget breakdown when calculate button is clicked
+            document.getElementById('calculateBudget')?.addEventListener('click', function() {
+                // Get current values
+                const income = parseFloat(document.getElementById('income').value) || 0;
+                const expenseInputs = document.querySelectorAll('.expense-input');
+                
+                // Calculate total expenses (simplified - in real app you'd get actual values)
+                let totalExpenses = 0;
+                expenseInputs.forEach(input => {
+                    const amount = parseFloat(input.querySelector('input[type="number"]')?.value) || 0;
+                    totalExpenses += amount;
+                });
+                
+                const savings = income - totalExpenses;
+                const savingsRate = income > 0 ? ((savings / income) * 100).toFixed(1) : 0;
+                
+                // Create a sample budget object for display
+                const sampleBudget = {
+                    income: income,
+                    expenses: [
+                        { category: "Rent/Mortgage", amount: income * 0.35 },
+                        { category: "Utilities", amount: income * 0.05 },
+                        { category: "Food", amount: income * 0.15 },
+                        { category: "Transportation", amount: income * 0.10 }
+                    ],
+                    savings: savings
+                };
+                
+                updateBudgetBreakdownDisplay(sampleBudget);
+            });
+        });
+    </script>
 </body>
 </html>

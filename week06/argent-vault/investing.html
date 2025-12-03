@@ -7,6 +7,392 @@
     <title>Investing 101 | The Argent Vault</title>
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/responsive.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Additional styles for enhanced investment options */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .investment-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            padding: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .investment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            border-color: #2E8B57;
+        }
+        
+        .investment-card.active {
+            border-color: #2E8B57;
+            box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.2);
+        }
+        
+        .investment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .investment-icon {
+            font-size: 28px;
+            color: #2E8B57;
+            background: rgba(46, 139, 87, 0.1);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        
+        .investment-type {
+            font-size: 14px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .investment-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin: 0 0 10px 0;
+        }
+        
+        .investment-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .investment-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .detail-label {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 3px;
+        }
+        
+        .detail-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2E8B57;
+        }
+        
+        .investment-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .investment-tag {
+            background: rgba(46, 139, 87, 0.1);
+            color: #2E8B57;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+        
+        .investment-btn {
+            background: #2E8B57;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .investment-btn:hover {
+            background: #247A48;
+        }
+        
+        .compare-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #666;
+            cursor: pointer;
+        }
+        
+        .compare-checkbox input {
+            cursor: pointer;
+        }
+        
+        /* Comparison Bar */
+        .comparison-bar {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 40px;
+            border: 2px solid #e9ecef;
+            display: none;
+        }
+        
+        .comparison-bar.active {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+        
+        .comparison-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .comparison-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #333;
+        }
+        
+        .clear-comparison {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        
+        .comparison-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .comparison-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            min-width: 200px;
+        }
+        
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .modal {
+            background: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        
+        .modal-overlay.active .modal {
+            transform: translateY(0);
+        }
+        
+        .modal-header {
+            padding: 25px 30px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            margin: 0;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #888;
+            transition: color 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: #333;
+        }
+        
+        .modal-body {
+            padding: 30px;
+        }
+        
+        .modal-section {
+            margin-bottom: 30px;
+        }
+        
+        .modal-section h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #333;
+            border-bottom: 2px solid #2E8B57;
+            padding-bottom: 8px;
+        }
+        
+        .modal-section p {
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        
+        .modal-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .highlight-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #2E8B57;
+        }
+        
+        .highlight-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .highlight-value {
+            color: #2E8B57;
+            font-weight: 700;
+        }
+        
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .btn-outline {
+            background: white;
+            color: #2E8B57;
+            border: 2px solid #2E8B57;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-outline:hover {
+            background: #f8f9fa;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .investment-card {
+                padding: 20px;
+            }
+            
+            .modal {
+                width: 95%;
+                max-height: 85vh;
+            }
+            
+            .modal-header, .modal-body {
+                padding: 20px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .card-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .investment-btn {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="main-header">
@@ -146,14 +532,46 @@
             </div>
         </section>
 
-        <!-- Dynamic Investment Data Display -->
+        <!-- Enhanced Dynamic Investment Data Display -->
         <section class="investment-data">
-            <h2>Investment Options</h2>
+            <div class="section-header">
+                <h2>Investment Options</h2>
+                <p class="section-subtitle">Click on any option to view detailed information. Select multiple options to compare.</p>
+            </div>
+            
             <div id="investmentOptions" class="options-grid">
                 <!-- Dynamic investment options will load here -->
             </div>
+            
+            <!-- Comparison Bar (hidden by default) -->
+            <div id="comparisonBar" class="comparison-bar">
+                <div class="comparison-header">
+                    <h3 class="comparison-title">Comparing Options (<span id="comparisonCount">0</span>)</h3>
+                    <button id="clearComparison" class="clear-comparison">Clear All</button>
+                </div>
+                <div id="comparisonItems" class="comparison-items">
+                    <!-- Comparison items will be added here -->
+                </div>
+            </div>
         </section>
     </main>
+
+    <!-- Modal for detailed investment information -->
+    <div id="investmentModal" class="modal-overlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalInvestmentTitle">Investment Details</h2>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body" id="modalInvestmentBody">
+                <!-- Modal content will be dynamically loaded -->
+            </div>
+            <div class="modal-actions">
+                <button class="btn-outline" id="addToPortfolio">Add to Portfolio</button>
+                <button class="investment-btn" id="learnMoreBtn">Learn More</button>
+            </div>
+        </div>
+    </div>
 
     <footer class="main-footer">
         <div class="container">
@@ -162,5 +580,436 @@
     </footer>
 
     <script type="module" src="scripts/api.js"></script>
+    <script>
+        // Investment options data
+        const investmentOptions = [
+            {
+                id: 1,
+                type: "Stocks",
+                title: "S&P 500 Index Fund",
+                description: "Diversified investment in the 500 largest US companies, offering broad market exposure with moderate risk.",
+                icon: "chart-line",
+                risk: "Medium",
+                return: "7-10%",
+                timeframe: "5+ years",
+                minInvestment: "$100",
+                tags: ["Diversified", "Long-term", "Growth"],
+                details: {
+                    overview: "An S&P 500 index fund tracks the performance of the 500 largest publicly traded companies in the United States. This provides instant diversification across multiple sectors and is considered a core holding for most long-term investors.",
+                    benefits: [
+                        "Broad diversification reduces individual stock risk",
+                        "Historically average returns of 7-10% annually",
+                        "Low expense ratios compared to actively managed funds",
+                        "Easy to buy and sell (high liquidity)"
+                    ],
+                    risks: [
+                        "Market volatility can lead to temporary losses",
+                        "Returns are tied to overall US market performance",
+                        "Doesn't include international exposure",
+                        "Inflation can erode purchasing power over time"
+                    ],
+                    suitability: "Ideal for investors with a medium to long-term horizon (5+ years) who want steady growth with moderate risk.",
+                    historicalPerformance: "Over the past 50 years, the S&P 500 has delivered an average annual return of approximately 10% before inflation."
+                }
+            },
+            {
+                id: 2,
+                type: "Bonds",
+                title: "US Treasury Bonds",
+                description: "Government-backed securities offering fixed interest payments with very low risk of default.",
+                icon: "shield-alt",
+                risk: "Low",
+                return: "3-5%",
+                timeframe: "1-10 years",
+                minInvestment: "$100",
+                tags: ["Safe", "Income", "Government"],
+                details: {
+                    overview: "US Treasury bonds are debt securities issued by the US government, considered among the safest investments in the world. They pay fixed interest every six months and return the principal at maturity.",
+                    benefits: [
+                        "Extremely low default risk (backed by US government)",
+                        "Predictable income stream",
+                        "Tax advantages (exempt from state and local taxes)",
+                        "Highly liquid market"
+                    ],
+                    risks: [
+                        "Interest rate risk (prices fall when rates rise)",
+                        "Inflation can erode purchasing power",
+                        "Lower returns compared to stocks",
+                        "Opportunity cost of potentially higher returns elsewhere"
+                    ],
+                    suitability: "Best for conservative investors, retirees, or as a stabilizing component in a diversified portfolio.",
+                    historicalPerformance: "Historically, long-term Treasury bonds have returned 4-6% annually, with much lower volatility than stocks."
+                }
+            },
+            {
+                id: 3,
+                type: "ETF",
+                title: "Technology Sector ETF",
+                description: "Exchange-traded fund focused on technology companies, offering growth potential with sector-specific risk.",
+                icon: "microchip",
+                risk: "Medium-High",
+                return: "8-12%",
+                timeframe: "3+ years",
+                minInvestment: "$50",
+                tags: ["Tech", "Growth", "Sector"],
+                details: {
+                    overview: "Technology ETFs invest in a basket of technology companies, providing exposure to innovative sectors like software, semiconductors, and internet services without having to pick individual stocks.",
+                    benefits: [
+                        "Exposure to high-growth technology sector",
+                        "Diversification within the tech industry",
+                        "Lower costs than buying individual tech stocks",
+                        "Potential for above-average returns"
+                    ],
+                    risks: [
+                        "Sector concentration risk",
+                        "Higher volatility than broad market funds",
+                        "Valuation concerns in tech bubbles",
+                        "Regulatory risks for tech companies"
+                    ],
+                    suitability: "Suitable for investors with higher risk tolerance who want to overweight the technology sector in their portfolio.",
+                    historicalPerformance: "Technology sector has significantly outperformed the broader market over the past decade, though with higher volatility."
+                }
+            },
+            {
+                id: 4,
+                type: "Real Estate",
+                title: "REIT Index Fund",
+                description: "Real Estate Investment Trust fund that invests in income-producing properties, offering diversification and dividends.",
+                icon: "building",
+                risk: "Medium",
+                return: "6-9%",
+                timeframe: "5+ years",
+                minInvestment: "$500",
+                tags: ["Property", "Dividend", "Income"],
+                details: {
+                    overview: "REITs (Real Estate Investment Trusts) own and often operate income-producing real estate. A REIT index fund provides diversified exposure to various property types including commercial, residential, and industrial real estate.",
+                    benefits: [
+                        "Regular dividend income (REITs must pay 90% of income to shareholders)",
+                        "Portfolio diversification (low correlation with stocks)",
+                        "Inflation hedge (rents and property values tend to rise with inflation)",
+                        "Professional management of properties"
+                    ],
+                    risks: [
+                        "Interest rate sensitivity",
+                        "Real estate market cycles",
+                        "Property-specific risks (vacancy rates, maintenance)",
+                        "Economic sensitivity"
+                    ],
+                    suitability: "Good for investors seeking regular income and diversification beyond traditional stocks and bonds.",
+                    historicalPerformance: "REITs have historically provided total returns of 8-10% annually, with higher dividend yields than the broader market."
+                }
+            },
+            {
+                id: 5,
+                type: "Crypto",
+                title: "Bitcoin & Ethereum",
+                description: "Digital currencies with high growth potential but also significant volatility and risk.",
+                icon: "bitcoin",
+                risk: "Very High",
+                return: "Highly Variable",
+                timeframe: "5+ years",
+                minInvestment: "$10",
+                tags: ["Digital", "Volatile", "Emerging"],
+                details: {
+                    overview: "Bitcoin and Ethereum are the two largest cryptocurrencies by market capitalization. Bitcoin is primarily a digital store of value, while Ethereum also supports smart contracts and decentralized applications.",
+                    benefits: [
+                        "Potential for extremely high returns",
+                        "Decentralized and not tied to any government",
+                        "24/7 market accessibility",
+                        "Innovative technology with growing adoption"
+                    ],
+                    risks: [
+                        "Extreme price volatility",
+                        "Regulatory uncertainty",
+                        "Security risks (hacks, lost keys)",
+                        "Emerging technology with unproven long-term viability"
+                    ],
+                    suitability: "Only for investors with very high risk tolerance who can afford to lose their entire investment. Should represent a small portion (1-5%) of a diversified portfolio.",
+                    historicalPerformance: "Bitcoin has delivered astronomical returns since its inception but with massive drawdowns exceeding 80% during bear markets."
+                }
+            },
+            {
+                id: 6,
+                type: "Mutual Funds",
+                title: "Target Date Retirement Fund",
+                description: "All-in-one fund that automatically adjusts asset allocation as you approach retirement age.",
+                icon: "bullseye",
+                risk: "Varies",
+                return: "6-8%",
+                timeframe: "10+ years",
+                minInvestment: "$250",
+                tags: ["Retirement", "Auto-rebalance", "Diversified"],
+                details: {
+                    overview: "Target date funds automatically adjust their asset allocation mix (stocks, bonds, cash) to become more conservative as the target retirement date approaches. They provide a complete portfolio in a single fund.",
+                    benefits: [
+                        "Automatic rebalancing and lifecycle adjustment",
+                        "Professional asset allocation",
+                        "Simplified investing (one-fund solution)",
+                        "Broad diversification across asset classes"
+                    ],
+                    risks: [
+                        "Higher fees than individual index funds",
+                        "One-size-fits-all approach may not match individual needs",
+                        "Glide path may be too aggressive or conservative for some",
+                        "Limited customization options"
+                    ],
+                    suitability: "Excellent for retirement investors who want a hands-off, professionally managed approach that automatically adjusts risk over time.",
+                    historicalPerformance: "Target date funds have generally provided returns in line with their asset allocation, with reduced volatility as the target date approaches."
+                }
+            }
+        ];
+
+        // Selected investments for comparison
+        let selectedInvestments = new Set();
+        
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            const investmentOptionsContainer = document.getElementById('investmentOptions');
+            const comparisonBar = document.getElementById('comparisonBar');
+            const comparisonItems = document.getElementById('comparisonItems');
+            const comparisonCount = document.getElementById('comparisonCount');
+            const clearComparisonBtn = document.getElementById('clearComparison');
+            const investmentModal = document.getElementById('investmentModal');
+            const closeModalBtn = document.getElementById('closeModal');
+            const modalTitle = document.getElementById('modalInvestmentTitle');
+            const modalBody = document.getElementById('modalInvestmentBody');
+            
+            // Render investment cards
+            investmentOptions.forEach(option => {
+                const card = createInvestmentCard(option);
+                investmentOptionsContainer.appendChild(card);
+            });
+            
+            // Create investment card HTML
+            function createInvestmentCard(option) {
+                const card = document.createElement('div');
+                card.className = 'investment-card';
+                card.dataset.id = option.id;
+                
+                card.innerHTML = `
+                    <div class="investment-icon">
+                        <i class="fas fa-${option.icon}"></i>
+                    </div>
+                    <div class="investment-type">${option.type}</div>
+                    <h3 class="investment-title">${option.title}</h3>
+                    <p class="investment-description">${option.description}</p>
+                    
+                    <div class="investment-details">
+                        <div class="detail-item">
+                            <span class="detail-label">Risk Level</span>
+                            <span class="detail-value">${option.risk}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Avg. Return</span>
+                            <span class="detail-value">${option.return}</span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="detail-label">Timeframe</span>
+                            <span class="detail-value">${option.timeframe}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="investment-tags">
+                        ${option.tags.map(tag => `<span class="investment-tag">${tag}</span>`).join('')}
+                    </div>
+                    
+                    <div class="card-footer">
+                        <label class="compare-checkbox">
+                            <input type="checkbox" class="compare-checkbox-input" data-id="${option.id}">
+                            Compare
+                        </label>
+                        <button class="investment-btn" data-id="${option.id}">View Details</button>
+                    </div>
+                `;
+                
+                // Add click event to entire card
+                card.addEventListener('click', function(e) {
+                    // Don't trigger if clicking on checkbox or button
+                    if (e.target.type === 'checkbox' || e.target.classList.contains('investment-btn')) {
+                        return;
+                    }
+                    openInvestmentModal(option);
+                });
+                
+                // Add event to "View Details" button
+                const viewDetailsBtn = card.querySelector('.investment-btn');
+                viewDetailsBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    openInvestmentModal(option);
+                });
+                
+                // Add event to compare checkbox
+                const compareCheckbox = card.querySelector('.compare-checkbox-input');
+                compareCheckbox.addEventListener('change', function(e) {
+                    e.stopPropagation();
+                    toggleInvestmentComparison(option.id, this.checked);
+                });
+                
+                return card;
+            }
+            
+            // Toggle investment comparison
+            function toggleInvestmentComparison(id, isChecked) {
+                const card = document.querySelector(`.investment-card[data-id="${id}"]`);
+                
+                if (isChecked) {
+                    selectedInvestments.add(id);
+                    card.classList.add('active');
+                } else {
+                    selectedInvestments.delete(id);
+                    card.classList.remove('active');
+                }
+                
+                updateComparisonBar();
+            }
+            
+            // Update comparison bar
+            function updateComparisonBar() {
+                comparisonCount.textContent = selectedInvestments.size;
+                
+                if (selectedInvestments.size > 0) {
+                    comparisonBar.classList.add('active');
+                    
+                    // Clear current comparison items
+                    comparisonItems.innerHTML = '';
+                    
+                    // Add selected investments to comparison bar
+                    selectedInvestments.forEach(id => {
+                        const option = investmentOptions.find(opt => opt.id == id);
+                        if (option) {
+                            const comparisonItem = document.createElement('div');
+                            comparisonItem.className = 'comparison-item';
+                            comparisonItem.innerHTML = `
+                                <h4>${option.title}</h4>
+                                <p><strong>Type:</strong> ${option.type}</p>
+                                <p><strong>Risk:</strong> ${option.risk}</p>
+                                <p><strong>Return:</strong> ${option.return}</p>
+                                <button class="remove-comparison" data-id="${option.id}">Remove</button>
+                            `;
+                            comparisonItems.appendChild(comparisonItem);
+                            
+                            // Add remove event
+                            const removeBtn = comparisonItem.querySelector('.remove-comparison');
+                            removeBtn.addEventListener('click', function(e) {
+                                e.stopPropagation();
+                                toggleInvestmentComparison(option.id, false);
+                                const checkbox = document.querySelector(`.compare-checkbox-input[data-id="${option.id}"]`);
+                                if (checkbox) checkbox.checked = false;
+                            });
+                        }
+                    });
+                } else {
+                    comparisonBar.classList.remove('active');
+                }
+            }
+            
+            // Clear all comparisons
+            clearComparisonBtn.addEventListener('click', function() {
+                selectedInvestments.clear();
+                
+                // Uncheck all checkboxes
+                document.querySelectorAll('.compare-checkbox-input').forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                
+                // Remove active class from all cards
+                document.querySelectorAll('.investment-card').forEach(card => {
+                    card.classList.remove('active');
+                });
+                
+                updateComparisonBar();
+            });
+            
+            // Open investment modal
+            function openInvestmentModal(option) {
+                modalTitle.textContent = option.title;
+                
+                // Build modal content
+                modalBody.innerHTML = `
+                    <div class="modal-section">
+                        <h3>Overview</h3>
+                        <p>${option.details.overview}</p>
+                        
+                        <div class="modal-highlights">
+                            <div class="highlight-item">
+                                <div class="highlight-title">Investment Type</div>
+                                <div class="highlight-value">${option.type}</div>
+                            </div>
+                            <div class="highlight-item">
+                                <div class="highlight-title">Risk Level</div>
+                                <div class="highlight-value">${option.risk}</div>
+                            </div>
+                            <div class="highlight-item">
+                                <div class="highlight-title">Average Return</div>
+                                <div class="highlight-value">${option.return}</div>
+                            </div>
+                            <div class="highlight-item">
+                                <div class="highlight-title">Minimum Investment</div>
+                                <div class="highlight-value">${option.minInvestment}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Key Benefits</h3>
+                        <ul>
+                            ${option.details.benefits.map(benefit => `<li>${benefit}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Potential Risks</h3>
+                        <ul>
+                            ${option.details.risks.map(risk => `<li>${risk}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div class="modal-section">
+                        <h3>Who Is This For?</h3>
+                        <p>${option.details.suitability}</p>
+                        
+                        <h3 style="margin-top: 20px;">Historical Performance</h3>
+                        <p>${option.details.historicalPerformance}</p>
+                    </div>
+                `;
+                
+                // Update modal actions
+                document.getElementById('addToPortfolio').onclick = function() {
+                    alert(`Added "${option.title}" to your portfolio watchlist!`);
+                };
+                
+                document.getElementById('learnMoreBtn').onclick = function() {
+                    alert(`Redirecting to more detailed information about ${option.title}...`);
+                    // In a real app, this would navigate to a dedicated page
+                };
+                
+                // Show modal
+                investmentModal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            }
+            
+            // Close modal
+            closeModalBtn.addEventListener('click', function() {
+                investmentModal.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+            });
+            
+            // Close modal when clicking outside
+            investmentModal.addEventListener('click', function(e) {
+                if (e.target === investmentModal) {
+                    investmentModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+            
+            // Close modal with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && investmentModal.classList.contains('active')) {
+                    investmentModal.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
